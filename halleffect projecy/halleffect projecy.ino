@@ -5,33 +5,24 @@ int hallVal = 0;
 int relayToggle = LOW;
 int previousState = HIGH; 
 
-int triggerState = 16;
 
 void setup ()
 {
   pinMode (relayPin, OUTPUT);
   pinMode (hallPin, INPUT);
+  Serial.begin(9600);
 }
  
 void loop ()
-{/**
-  hallVal = digitalRead(hallPin);
-  if (hallVal == LOW && previousState==HIGH)
+{
+  hallVal += digitalRead(hallPin);
+  if (hallVal == LOW && previousState==HIGH && hallVal < 16)
   {
     relayToggle=!relayToggle;
     digitalWrite (relayPin, relayToggle);
+    hallVal = 0;
   }
   previousState=hallVal;
-  */
-  if(digitalRead(hallPin))
-  {
-    hallVal++;
-  }
-  
-  if(   (hallVal > triggerState)  )
-  {
-    digitalWrite(relayPin, HIGH);
-    delay(2000);
-    digitalWrite(relayPin,LOW);
-  }
+  Serial.println(hallVal);
+
 }
