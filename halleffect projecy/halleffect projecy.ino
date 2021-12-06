@@ -4,7 +4,7 @@ const int hallPin = 2;
 int hallVal = 0;
 int relayToggle = LOW;
 int previousState = HIGH; 
-
+int count = 0;
 
 void setup ()
 {
@@ -15,20 +15,29 @@ void setup ()
  
 void loop ()
 {
-  hallVal += digitalRead(hallPin);
-  if(hallVal > 20)
+ // hallVal = digitalRead(hallPin);
+
+  if(analogRead(A0) < 100)
   {
-    hallVal = 0;
+    hallVal++;
   }
-  delay(500);
+  
   if (hallVal == 16)
   {
     relayToggle=!relayToggle;
     digitalWrite (relayPin, relayToggle);
     delay(1000);
     hallVal = 0;
+     digitalWrite (relayPin, LOW);
   }
   previousState=hallVal;
-  Serial.println(hallVal);
+ 
 
+Serial.println(hallVal);
+ delay(200);
+ count++;
+ Serial.print("loop ");
+  Serial.print(count);
+ Serial.print(" ");
+  Serial.println(analogRead(A0)); 
 }
