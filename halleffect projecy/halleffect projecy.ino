@@ -24,8 +24,9 @@ void loop ()
   
   if (hallVal == 16)
   {
-    relayToggle=!relayToggle;
-    digitalWrite (relayPin, relayToggle);
+    //relayToggle=!relayToggle;
+    delay(100);
+    digitalWrite (relayPin, HIGH);
     delay(1000);
     hallVal = 0;
      digitalWrite (relayPin, LOW);
@@ -34,7 +35,7 @@ void loop ()
  
 
 Serial.println(hallVal);
- delay(200);
+ delay(100);
  count++;
  Serial.print("loop ");
   Serial.print(count);
