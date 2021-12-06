@@ -16,7 +16,12 @@ void setup ()
 void loop ()
 {
   hallVal += digitalRead(hallPin);
-  if (hallVal == LOW && previousState==HIGH && hallVal < 16)
+  if(hallVal > 20)
+  {
+    hallVal = 0;
+  }
+  delay(500);
+  if (hallVal == 16)
   {
     relayToggle=!relayToggle;
     digitalWrite (relayPin, relayToggle);
