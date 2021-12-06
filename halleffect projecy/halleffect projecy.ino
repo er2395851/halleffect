@@ -20,6 +20,7 @@ void loop ()
   {
     relayToggle=!relayToggle;
     digitalWrite (relayPin, relayToggle);
+    delay(1000);
     hallVal = 0;
   }
   previousState=hallVal;
